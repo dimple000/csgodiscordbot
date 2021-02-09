@@ -2,6 +2,7 @@ import discord
 from captcha.image import ImageCaptcha
 import random
 import time
+import os
 
 client = discord.Client()
 gaming = '채원인증'
@@ -58,6 +59,8 @@ async def on_message(message):
             await message.channel.send(embed=tlfvoEmbed)
             print(f'{message.author} 님이 잘못된 숫자로 인해 인증을 실패함.')
 
-client.run("NzIyOTgwNTE2MjM1NzA2Mzc5.Xuq-Ew.CSV-J0M34jVYyMU1OFa_nKpxX48")
+            
+access_token = os.environ["BOT_TOKEN"]     
+client.run(access_token)
 
 
