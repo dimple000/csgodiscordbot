@@ -5,7 +5,7 @@ import time
 import os
 
 client = discord.Client()
-gaming = '채원인증'
+gaming = '채원 인증'
 
 @client.event
 async def on_ready():
@@ -15,7 +15,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.content.startswith("채원인증"):    # #인증
+    if message.content.startswith("채원 인증"):    # 채원 인증
         a = ""
         Captcha_img = ImageCaptcha()
         for i in range(6):
