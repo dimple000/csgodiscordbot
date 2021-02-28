@@ -62,13 +62,6 @@ async def on_message(message):
             print(f'{message.author} 님이 잘못된 숫자로 인해 인증을 실패함.')
             
 @client.event
-async def on_ready():
-    print("봇이 성공적으로 실행되었습니다.")
-    game = discord.Game('청소중')
-    await client.change_presence(status=discord.Status.online, activity=game)
-
-
-@client.event
 async def on_message(message):
     if message.content.startswith('!청소'):
         try:
