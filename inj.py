@@ -60,7 +60,27 @@ async def on_message(message):
             tlfvoEmbed.add_field(name='이유', value='잘못된 숫자', inline=False)
             await message.channel.send(embed=tlfvoEmbed)
             print(f'{message.author} 님이 잘못된 숫자로 인해 인증을 실패함.')
-                  
+
+@client.event
+async def on_message(message):
+    if message.guild is None:
+        if message.author.bot:
+            return
+        else:
+            embed = discord.Embed(colour=discord.Colour.blue(), timestamp=message.created_at)
+            embed.add_field(name='전송자', value=message.author, inline=False)
+            embed.add_field(name='내용', value=message.content, inline=False)
+            embed.set_footer(text=f'!디엠 <@{message.author.id}> [할말] 을 통해 답장을 보내주세요!')
+            await client.get_channel(819553029128192010).send(f"`{message.author.name}({message.author.id})`", embed=embed)
+
+    if message.content.startswith('!디엠'):
+        if message.author.guild_permissions.manage_messages:
+            msg = message.content[26:]
+            await message.mentions[0].send(f"**{message.author.name}** 님의 답장: {msg}")
+            await message.channel.send(f'`{message.mentions[0]}`에게 DM을 보냈습니다')
+        else:
+            return
+        
 access_token = os.environ["BOT_TOKEN"]     
 client.run(access_token)
 
